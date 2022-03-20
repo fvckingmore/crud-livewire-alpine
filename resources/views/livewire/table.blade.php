@@ -29,8 +29,8 @@
 						<td class="text-center align-middle">{{ $a->price }}</td>
 						<td>
 							<div class="btn-group" role="group">
-								<button type="button" class="btn btn-info">Editar</button>
-								<button type="button" class="btn btn-danger">Borrar</button>
+								<button wire:click="$emitTo('form','editArticle', {{ $a->id }})" type="button" class="btn btn-info">Editar</button>
+								<button wire:click="$emitTo('form','confirmDeleteArticle', {{ $a->id }})" type="button" class="btn btn-danger">Borrar</button>
 							</div>
 						</td>
 					</tr>
@@ -47,3 +47,5 @@
 		</div>{{-- Card Footer --}}
 	</div>{{-- Card --}}
 </div> {{-- col-9 --}}
+
+

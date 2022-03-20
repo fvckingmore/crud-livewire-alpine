@@ -1,4 +1,4 @@
-<div class="col-9 p-4">
+<div class="col p-4">
 	<div class="card text-center">
 		<div class="card-header">
 			<h3>Articulos</h3>
@@ -29,7 +29,7 @@
 						<td class="text-center align-middle">{{ $a->price }}</td>
 						<td>
 							<div class="btn-group" role="group">
-								<button wire:click="$emitTo('form','editArticle', {{ $a->id }})" type="button" class="btn btn-info">Editar</button>
+								<button wire:click="editArticle({{ $a->id }})" type="button" class="btn btn-info">Editar</button>
 								<button wire:click="$emitTo('form','confirmDeleteArticle', {{ $a->id }})" type="button" class="btn btn-danger">Borrar</button>
 							</div>
 						</td>
@@ -37,15 +37,38 @@
 					@endforeach
 
 					
-				</tbody>
+				</tbody>{{-- Table BOdy --}}
 
 			</table>{{-- Table --}}
 		</div>{{-- Card Body --}}
 
 		<div class="card-footer text-muted">
-			{{ $articles->links('layouts.pagination') }}
+
+			<div class="container">
+				{{ $articles->links('layouts.pagination') }}
+			</div>
+
 		</div>{{-- Card Footer --}}
 	</div>{{-- Card --}}
+
+	<div class="container text-center mt-2">
+		<button wire:click="openForm" class="btn btn-primary">Agregar</button>
+	</div>
+
+	@include('livewire.form')
+
 </div> {{-- col-9 --}}
+
+<script>
+	window.addEventListener('openForm', e => {
+		$('#form').modal('show');
+
+	});
+
+	window.addEventListener('closeForm', e => {
+		$('#form').modal('hide');
+
+	});
+</script>
 
 

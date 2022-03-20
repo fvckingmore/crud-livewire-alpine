@@ -12,7 +12,8 @@
 
   	@yield('content')
 
-	<script src="{{ url('js/bootstrap.bundle.min.js') }}"></script>
+	<script src="{{ url('js/bootstrap.min.js') }}"></script>
+	<script src="{{ url('js/jquery.min.js') }}"></script>
 	@livewireScripts
 
   </body>

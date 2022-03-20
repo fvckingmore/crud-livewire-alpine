@@ -1,10 +1,10 @@
 <div>
-	<div id="form" class="modal" tabindex="-1" role="dialog" wire:ignore>
+	<div id="form" class="modal" tabindex="-1" role="dialog" wire:ignore.self>
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 
 				<div class="modal-header">
-					<h5 class="modal-title">{{ $type }} {{ $type == 0 ? "Agregar" : "Editar" }} Articulo</h5>
+					<h5 class="modal-title">{{ $type == 0 ? "Agregar" : "Editar" }} Articulo</h5>
 				</div>{{-- Modal Header --}}
 
 				<div class="modal-body">

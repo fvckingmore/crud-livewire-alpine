@@ -12,7 +12,7 @@ class Table extends Component
 {
 	Use WithPagination;
 
-	public $name, $description, $categorie, $amount, $price, $type;
+	public $ID,$name, $description, $categorie, $amount, $price, $type;
 	protected $rules = [
 		'name' => 'required',
 		'description' => 'required',
@@ -41,6 +41,7 @@ class Table extends Component
 
 		$a = Articles::findOrFail($id);
 		if(isset($a)) {
+			$this->ID = $a->id;
 			$this->name = $a->name;
 			$this->description = $a->description;
 			$this->categorie = $a->categorie;
@@ -98,5 +99,7 @@ class Table extends Component
 
 	public function closeForm() {
 		$this->dispatchBrowserEvent('closeForm');
+		$this->unloadArticle();
+		$this->resetValidation();
 	}
 }

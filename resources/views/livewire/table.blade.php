@@ -30,7 +30,7 @@
 						<td>
 							<div class="btn-group" role="group">
 								<button wire:click="editArticle({{ $a->id }})" type="button" class="btn btn-info">Editar</button>
-								<button wire:click="deleteArticle({{ $a->id }})" type="button" class="btn btn-danger">Borrar</button>
+								<button wire:click="confirmDeleteArticle({{ $a->id }})" type="button" class="btn btn-danger">Borrar</button>
 							</div>
 						</td>
 					</tr>
@@ -70,8 +70,12 @@
 
 	});
 
-	window.addEventListener('confirmDeleteArticle,' e => {
-		Livewire.emit('deleteArticle', confirm("Esta seguro de borrar " + name + '?'), id)
+	window.addEventListener('confirm', e => {
+		Livewire.emit(
+			'deleteArticle', 
+			confirm("Esta seguro de borrar " + event.detail.name + '?'),
+			event.detail.id
+		)
 	});
 </script>
 

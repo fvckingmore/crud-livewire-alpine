@@ -13,6 +13,7 @@ class Table extends Component
 	Use WithPagination;
 
 	public $ID,$name, $description, $categorie, $amount, $price, $type;
+	protected $listeners = ['deleteArticle' => 'deleteArticle'];
 	protected $rules = [
 		'name' => 'required',
 		'description' => 'required',

@@ -12,9 +12,9 @@ class Form extends Component
 		return view('livewire.form');
 	}
 
-	public $name, $description, $categorie, $amount, $price;
+	public $name, $description, $categorie, $amount, $price, $type;
 
-	public function reset() {
+	public function unloadArticle() {
 		$this->name = "";
 		$this->description = "";
 		$this->categorie = "";
@@ -22,8 +22,24 @@ class Form extends Component
 		$this->price = 0.0;
 	}
 
-	public function add() {
+	public function addArticle() {
 		Articles::create([
+			'name' => $this->name,
+			'description' => $this->description,
+			'categorie' => $this->categorie,
+			'amount' => $this->amount,
+			'price' => $this->price
+		]);
+
+		$this->resetForm();
+	}
+
+	public function deleteArticle($id) {
+		Articles::findOrFail($id)->delete();
+	}
+
+	public function editArticle($id) {
+		Articles::findOrFail($id)->update([
 			'name' => $this->name,
 			'description' => $this->description,
 			'categorie' => $this->categorie,

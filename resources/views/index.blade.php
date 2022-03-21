@@ -3,7 +3,7 @@
 
 <div class="container">
 	<div class="row">
-		<livewire:table />
+		@include('table')
 	</div> {{-- row --}}
 </div>{{-- container --}}
 

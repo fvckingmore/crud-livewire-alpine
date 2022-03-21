@@ -1,15 +1,13 @@
 <div class="container">
 	<div class="row">
 
-		@include('livewire.form')
-
-		<div class="col-9 p-4">
+		<div class="p-4">
 			<div class="card text-center">
 				<div class="card-header">
 					<h3>Articulos</h3>
 				</div>
 				<div class="card-body">
-					<table class="table table-striped">
+					<table id="aja" class="table table-striped">
 						<thead class="text-center">
 							<tr>
 								<th class="text-center align-middle" scope="col">#</th>
@@ -34,8 +32,12 @@
 								<td class="text-center align-middle">{{ $a->price }}</td>
 								<td>
 									<div class="btn-group" role="group">
-										<button wire:click="editArticle({{ $a->id }})" type="button" class="btn btn-info">Editar</button>
-										<button wire:click="confirmDeleteArticle({{ $a->id }})" type="button" class="btn btn-danger">Borrar</button>
+										<a href="{{ url('edit/'.$a->id) }}" class="btn btn-info">Edtar</a>
+										<form method="post" action="{{ url('delete') }}">
+											@csrf
+											<input type="hidden" name="id" value={{ $a->id }}>
+											<input type="submit" value="Borrar" class="btn btn-danger">
+										</form>
 									</div>
 								</td>
 							</tr>
@@ -46,37 +48,25 @@
 
 					</table>{{-- Table --}}
 				</div>{{-- Card Body --}}
-
-				<div class="card-footer text-muted">
-					<div class="container">
-						{{ $articles->links('layouts.pagination') }}
-					</div>
-				</div>{{-- Card Footer --}}
-
 			</div>{{-- Card --}}
+
+			<div class="text-center mt-2">
+				<a href="{{ url('create') }}" class="btn btn-primary">
+					Agregar
+				</a>
+			</div>
 
 		</div> {{-- col-9 --}}
 	</div>{{-- Row --}}
 </div>{{-- Container --}}
 
+
 <script>
-	window.addEventListener('openForm', e => {
-		$('#form').modal('show');
+	var jq = jQuery.noConflict(true);
 
-	});
-
-	window.addEventListener('closeForm', e => {
-		$('#form').modal('hide');
-
-	});
-
-	window.addEventListener('confirm', e => {
-		Livewire.emit(
-			'deleteArticle', 
-			confirm("Esta seguro de borrar " + event.detail.name + '?'),
-			event.detail.id
-			)
-	});
+	$(document).ready( function () {
+		$('#aja').DataTable();
+	} );
 </script>
 
 

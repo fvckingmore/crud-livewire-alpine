@@ -19,3 +19,8 @@ Route::get('/', function () {
 });*/
 
 Route::get('/', [ArticlesController::class,'index']);
+Route::get('/create', [ArticlesController::class,'create']);
+Route::post('/add', [ArticlesController::class,'add']);
+Route::get('/edit/{id}', [ArticlesController::class,'edit']);
+Route::post('/update', [ArticlesController::class,'update']);
+Route::post('/delete', [ArticlesController::class,'delete']);
